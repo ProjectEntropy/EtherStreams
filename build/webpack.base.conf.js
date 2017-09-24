@@ -25,8 +25,12 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  node: {
+    fs: "empty"
+  },
   module: {
     rules: [
+      { test: /vue-icons/, loader: "callback-loader"},
       {
         test: /\.vue$/,
         loader: 'vue-loader',

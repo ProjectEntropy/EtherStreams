@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import VideoList from '@/components/VideoList'
+
+import EthVideo from '@/components/EthVideo'
 
 Vue.use(Router)
 
@@ -8,8 +10,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'VideoList',
+      component: VideoList
+    },
+    {
+      path: '/watch/:magnet',
+      name: 'watch',
+      component: EthVideo,
+      props: true
     }
   ]
 })
