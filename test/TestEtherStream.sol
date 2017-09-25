@@ -9,11 +9,11 @@ contract TestEtherStream {
   function testItStoresAValue() {
     EtherStream etherStream = EtherStream(DeployedAddresses.EtherStream());
 
-    etherStream.set(89);
+    etherStream.newContent("Sentinel", "magnet:blahblah");
 
-    uint expected = 89;
+    string expected = "Sentinel";
 
-    Assert.equal(etherStream.get(), expected, "It should store the value 89.");
+    /*Assert.equal(etherStream.getstream_content(0), expected, "It should store the title.");*/
   }
 
 }

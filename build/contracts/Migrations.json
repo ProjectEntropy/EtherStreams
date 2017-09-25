@@ -70,10 +70,16 @@
     "1505969715555": {
       "events": {},
       "links": {},
+      "address": "0x0b551cddba621280cb11b709bdaabea3ad54bc5a",
+      "updated_at": 1506290994305
+    },
+    "1506292646185": {
+      "events": {},
+      "links": {},
       "address": "0x4a41c35347dfb18d835b688885f40d6f7a84b95e",
-      "updated_at": 1505969724240
+      "updated_at": 1506292657900
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1505969724240
+  "updated_at": 1506292657900
 }

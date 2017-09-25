@@ -11,12 +11,25 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 
 
+// ContentStore
+import ContentStore from './store/videos'
+
 Vue.use(BootstrapVue);
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  props: [ 'web3' ],
+  methods: {
+
+  },
+
+  created: function () {
+    // Establish Ethereum connection on create
+    ContentStore.getWeb3()
+  }
 })

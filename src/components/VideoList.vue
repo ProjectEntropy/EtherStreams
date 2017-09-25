@@ -13,8 +13,6 @@
     <div class="row">
       <VideoPreview v-for="c in ContentStore.state.content" :video="c">
       </VideoPreview>
-
-
     </div>
   </div>
 </template>
