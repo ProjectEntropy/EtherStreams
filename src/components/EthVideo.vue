@@ -2,6 +2,7 @@
   <div class='video-container'>
     <div class='embed-responsive'>
       <div class='video'>
+        <MoonLoader ></MoonLoader>
       </div>
     </div>
 
@@ -18,31 +19,19 @@
 
 <script>
 var WebTorrent = require('webtorrent')
+import MoonLoader from './Loader'
 
 export default {
   name: "ethvideo",
   props: ['magnet', 'video'],
-  methods: {
-    loadVideo: function(torrent)
-    {
-      console.log("loadVideo")
-      // Torrents can contain many files. Let's use the .mp4 file
-      var file = torrent.files.find(function (file) {
-        console.log("file")
-        console.log(file)
-
-        return file.name.endsWith('.mp4')
-        //
-      })
-
-      // Display the file by adding it to the DOM.
-      // Supports video, audio, image files, and more!
-
-      // debugger
-      file.appendTo(this.$el)
-    },
+  components: { 'MoonLoader': MoonLoader },
+  data () {
+    return {
+      loading: true,
+      color: "black",
+      size: "20em"
+    }
   },
-
 
   mounted: function() {
     // var torrentId = this.magnet
@@ -54,10 +43,10 @@ export default {
 
     // Hack on extra trackers incase there are none
     var magnetURI = unescape(this.magnet + '&tr=wss://tracker.openwebtorrent.com&tr=wss://tracker.btorrent.xyz&tr=wss://tracker.fastcast.nz')
-    
+
 
     client.add(magnetURI, function (torrent) {
-      // Got torrent metadata!
+      // Got torrent metadata
       console.log('Client is downloading:', torrent.infoHash)
 
       var content_file
@@ -68,33 +57,35 @@ export default {
       }
       else {
          torrent.files.forEach(function (file) {
+           console.log(file)
            var name = file.name.toLowerCase()
 
-           if(name.endsWith('.mp4'))
+           // If this is renderable content
+           if(/\.(mp4|m4v|webm|ogg|mp3)$/i.test(name))
            {
-             content_file = file
-           }
-           else if(name.endsWith('.webm'))
-           {
-             content_file = file
-           }
-           else if(name.endsWith('.ogg'))
-           {
-             content_file = file
-           }
-           if(name.endsWith('.mp3'))
-           {
-             content_file = file
+             // make it the file to render unless there is a bigger file
+             if(content_file == null)
+             {
+               content_file = file
+             }
+             else if(file.length > content_file.length)
+             {
+               content_file = file
+             }
            }
          })
       }
 
-
-
       console.log(content_file)
+      if(content_file)
+      {
+        content_file.appendTo('.video')
+      }
+      else
+      {
+        alert("Unable to render any files from torrent")
+      }
 
-
-      content_file.appendTo('.video')
     })
   }
 }
@@ -107,5 +98,14 @@ export default {
   {
     background: black;
     min-height: 600px;
+  }
+
+  .v-spinner
+  {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    margin-left: -30px;
+    margin-bottom: -30px;
   }
 </style>

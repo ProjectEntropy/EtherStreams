@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VideoList from '@/components/VideoList'
+import Stream from '@/components/Stream'
 
 import EthVideo from '@/components/EthVideo'
 
@@ -10,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'VideoList',
-      component: VideoList
+      name: 'Stream',
+      component: Stream
     },
     {
       path: '/watch/:magnet',

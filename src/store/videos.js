@@ -17,6 +17,7 @@ export default {
       this.instantiateContract()
     })
   },
+
   instantiateContract() {
     const contract = require('truffle-contract')
     const etherStreams = contract(EtherStreamContract)
@@ -42,13 +43,24 @@ export default {
           console.log("loading content")
           this.state.stream_instance.content(i).then((result) => {
             console.log(result)
-            this.addContent({ title: result[0], magnet: result[1], love: Number(result[2]), creator: result[3] })
+            this.addContent(
+              {
+                title: result[0],
+                preview_magnet: result[1],
+                magnet: result[2],
+                love: Number(result[3]),
+                creator: result[4]
+              })
           })
         }
       })
     })
   },
+
   addContent (content) {
     this.state.content.push(content)
+  },
+  createContent (content) {
+    this.state.stream_instance.newContent(title, magnet,  { from: this.state.web3.accounts[0] })
   }
 }

@@ -1,17 +1,7 @@
 <template>
-  <div class="VideoList">
+  <div class="Stream drop-here">
     <div class="row">
-      <div class="card drop-here" style="width: 80rem;">
-        <div class="card-block">
-          <h4 class="card-title">Drop Here</h4>
-          <p class="card-text">Add new content to this stream</p>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <VideoPreview v-for="c in ContentStore.state.content" :video="c">
+      <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c">
       </VideoPreview>
     </div>
   </div>
@@ -21,6 +11,7 @@
 import VideoPreview from './VideoPreview.vue'
 import ContentStore from './../store/videos'
 
+
 var dragDrop = require('drag-drop')
 var WebTorrent = require('webtorrent')
 
@@ -29,9 +20,9 @@ var client = new WebTorrent()
 
 export default {
 
-  name: 'hello',
+  name: 'video_list',
   components: {
-    'VideoPreview': VideoPreview
+    'VideoPreview': VideoPreview,
   },
   methods: {
     seedingStarted: function(torrent)

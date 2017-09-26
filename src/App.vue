@@ -6,7 +6,7 @@
 
 
                    <!-- Branding Image -->
-                   <router-link class="navbar-brand" :to="{ name: 'home'}">
+                   <router-link class="navbar-brand" :to="{ name: 'Stream'}">
                        <span class="glyphicon glyphicon-play"></span><span>►</span> ΞtherStreams
                    </router-link>
                </div>
