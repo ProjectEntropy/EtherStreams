@@ -1,13 +1,17 @@
 <template>
-  <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 drop-here">
-    <div class="row">
-      <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c">
-      </VideoPreview>
-    </div>
-  </main>
+  <div>
+    <streams></streams>
+    <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 drop-here">
+      <div class="row">
+        <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c">
+        </VideoPreview>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
+import Streams from './Streams.vue'
 import VideoPreview from './VideoPreview.vue'
 import ContentStore from './../store/videos'
 
@@ -22,6 +26,7 @@ export default {
 
   name: 'video_list',
   components: {
+    'streams': Streams,
     'VideoPreview': VideoPreview,
   },
   methods: {

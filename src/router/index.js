@@ -18,6 +18,13 @@ export default new Router({
       name: 'watch',
       component: EthVideo,
       props: true
+    },
+    {
+      path: '/stream/:address',
+      name: 'stream',
+      component: Stream,
+      props: true
     }
+
   ]
 })

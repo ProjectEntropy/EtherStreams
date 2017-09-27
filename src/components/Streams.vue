@@ -1,36 +1,41 @@
 <template>
   <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Cats</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Technology</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Ethereum</a>
-            </li>
-          </ul>
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+        <router-link :to="{ name: 'stream', params: { address: 'testaddress234897238946239' }}" class="nav-link active">
+          Home <span class="sr-only">(current)</span>
+        </router-link>
 
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Music</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Documentaries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Political</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">FREEDOM</a>
-            </li>
-          </ul>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'stream', params: { address: 'testaddress234897238946239' }}" class="nav-link">
+          Cats
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Technology</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Ethereum</a>
+      </li>
+    </ul>
 
-        </nav>
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Music</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Documentaries</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Political</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">FREEDOM</a>
+      </li>
+    </ul>
+
+  </nav>
 </template>
 
 <script>
@@ -41,7 +46,7 @@ export default {
 
   data () {
     return {
-      // ContentStore
+      // StreamStore
     }
   }
 }

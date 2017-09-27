@@ -3,7 +3,7 @@
   <div class="content-card">
     <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
       <img class="card-img-top" src="./../assets/content_placeholder.png" alt="Card image cap">
-      </router-link>
+    </router-link>
     <div class="">
       <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
         <p class="card-title lead">{{ video.title }}</p>

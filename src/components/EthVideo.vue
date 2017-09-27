@@ -1,5 +1,5 @@
 <template>
-  <div class='video-container'>
+  <div class=''>
     <div class='embed-responsive'>
       <div class='video'>
         <MoonLoader ></MoonLoader>
