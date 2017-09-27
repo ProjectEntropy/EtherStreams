@@ -1,13 +1,23 @@
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.10;
+
+import './LinkedList.sol';
+
 
 // Used to build new streams
 contract StreamFactory{
+  EtherStream[] public streams;
+
+  // Constructor
+  function StreamFactory(){
+
+  }
+
   // Create a new stream
-  function newStream(string _title)
+  function newStream(string _title, bool _public)
     public
     returns(EtherStream newStream)
   {
-    EtherStream s = new EtherStream(msg.sender, _title);
+    EtherStream s = new EtherStream(msg.sender, _title, _public);
     return s;
   }
 }
@@ -15,6 +25,12 @@ contract StreamFactory{
 
 // A stream of content and other streams
 contract EtherStream {
+  using LibCLLu for LibCLLu.CLL;
+
+  // The circular linked list storage structure
+  LibCLLu.CLL public list;
+
+
   // Content in this stream
   Content[] public content;
   uint public content_count;
@@ -25,6 +41,7 @@ contract EtherStream {
   StreamFactory public stream_factory;
   address public owner;
   string public title;
+  bool public public_stream;
 
   // Substream contracts
   address[] public streams;
@@ -39,11 +56,13 @@ contract EtherStream {
     uint created;
   }
 
-  function EtherStream (address _owner, string _title)
+  function EtherStream (address _owner, string _title, bool _public_stream)
   {
     created = block.timestamp;
     owner = _owner;
     title = _title;
+    public_stream = _public_stream;
+
 
     // Example content
     newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
@@ -76,23 +95,13 @@ contract EtherStream {
 
     c.created = block.timestamp; // Current block timestamp UTC
 
-    content.push(c);
-    content_count++;
+    /*content.push(c);
+    content_count++;*/
 
     ContentAdded(content_count, c.title, c.uri, c.preview_uri);
     return content_count;
   }
 
-  // Create a new stream
-  function newStream(string _title)
-    public
-    returns(EtherStream newStream)
-  {
-    // TODO check who is owner of this
-    EtherStream s = stream_factory.newStream(_title);
-    streams.push(s);
-    return s;
-  }
 
   // Give some thanks to the creator of this content
   function giveLove(uint content_id) payable
