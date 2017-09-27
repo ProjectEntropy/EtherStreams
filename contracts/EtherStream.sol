@@ -1,6 +1,6 @@
 pragma solidity ^0.4.2;
 
-
+// Used to build new streams
 contract StreamFactory{
   // Create a new stream
   function newStream(string _title)
@@ -8,11 +8,12 @@ contract StreamFactory{
     returns(EtherStream newStream)
   {
     EtherStream s = new EtherStream(msg.sender, _title);
-    /*streams.push(s);*/
     return s;
   }
 }
 
+
+// A stream of content and other streams
 contract EtherStream {
   // Content in this stream
   Content[] public content;
@@ -21,7 +22,7 @@ contract EtherStream {
   // About this stream
   uint public created;
 
-  StreamFactory public factory;
+  StreamFactory public stream_factory;
   address public owner;
   string public title;
 
@@ -59,7 +60,7 @@ contract EtherStream {
     newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
     newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
     newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    
+
   }
 
   // Add new content
@@ -80,6 +81,17 @@ contract EtherStream {
 
     ContentAdded(content_count, c.title, c.uri, c.preview_uri);
     return content_count;
+  }
+
+  // Create a new stream
+  function newStream(string _title)
+    public
+    returns(EtherStream newStream)
+  {
+    // TODO check who is owner of this
+    EtherStream s = stream_factory.newStream(_title);
+    streams.push(s);
+    return s;
   }
 
   // Give some thanks to the creator of this content

@@ -1,80 +1,85 @@
 <template>
-  <div class="container">
-       <nav class="navbar navbar-default navbar-fixed-top">
-           <div class="container">
-               <div class="navbar-header">
+  <div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
 
 
-                   <!-- Branding Image -->
-                   <router-link class="navbar-brand" :to="{ name: 'Stream'}">
-                       <span class="glyphicon glyphicon-play"></span><span>►</span> ΞtherStreams
-                   </router-link>
-               </div>
+                <!-- Branding Image -->
+                <router-link class="navbar-brand" :to="{ name: 'Stream'}">
+                    <span class="glyphicon glyphicon-play"></span><span>►</span> ΞtherStreams
+                </router-link>
+            </div>
 
-               <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                   <form class="navbar-form navbar-left">
-                       <div class="form-group">
-                           <input name="q" type="search" class="form-control" placeholder="Search">
-                       </div>
-                       <button type="submit" class="btn btn-default btn-search">
-                           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                       </button>
-                   </form>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input name="q" type="search" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-search">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </form>
 
-                   <!-- Right Side Of Navbar -->
-                   <ul class="nav navbar-nav navbar-right">
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
 
-                           <li>
-                               <router-link :to="{name: 'UploadPage'}">
-                                   <span class="glyphicon glyphicon-open"></span>
-                               </router-link>
-                           </li>
-                           <li class="dropdown">
-                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   <span class="glyphicon glyphicon-bell"></span>
-                               </a>
-                               <ul class="dropdown-menu" role="menu">
-                                   <li class="dropdown-header">No Notification</li>
-                               </ul>
-                           </li>
-                           <li class="dropdown">
-                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
-                               </a>
+                        <li>
+                            <router-link :to="{name: 'UploadPage'}">
+                                <span class="glyphicon glyphicon-open"></span>
+                            </router-link>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-bell"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-header">No Notification</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
+                            </a>
 
-                               <ul class="dropdown-menu" role="menu">
-                                   <li class="dropdown-header"> name</li>
-                                   <li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-header"> name</li>
+                                <li>
+                                   My Account
+                                </li>
+                                <li class="nav-divider"></li>
+                                <li>
+                                    Logout
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-                                      My Account
-
-                                   </li>
-                                   <li class="nav-divider"></li>
-                                   <li>
-
-                                           Logout
-
-
-                                   </li>
-                               </ul>
-                           </li>
-
-                   </ul>
-               </div>
-           </div>
-       </nav>
-
-       <router-view></router-view>
-
-       <footer>
-       </footer>
+    <div class="container-fluid">
+      <div class="row">
+        <streams></streams>
+        <router-view></router-view>
+        <footer></footer>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
+import Streams from './components/Streams.vue'
+
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    'streams': Streams,
+  },
+
 }
 </script>
 

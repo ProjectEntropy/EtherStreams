@@ -1,10 +1,10 @@
 <template>
-  <div class="Stream drop-here">
+  <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 drop-here">
     <div class="row">
       <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c">
       </VideoPreview>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
