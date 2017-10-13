@@ -3,7 +3,7 @@
     <streams></streams>
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 drop-here">
       <div class="row">
-        <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c">
+        <VideoPreview v-for="c in ContentStore.state.content" :key="c.magnet" :video="c" :client="client">
         </VideoPreview>
       </div>
     </main>
@@ -51,7 +51,8 @@ export default {
   },
   data () {
     return {
-      ContentStore
+      ContentStore,
+      client
     }
   }
 }

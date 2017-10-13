@@ -1,8 +1,5 @@
 pragma solidity ^0.4.10;
 
-import './LinkedList.sol';
-
-
 // Used to build new streams
 contract StreamFactory{
   EtherStream[] public streams;
@@ -25,10 +22,10 @@ contract StreamFactory{
 
 // A stream of content and other streams
 contract EtherStream {
-  using LibCLLu for LibCLLu.CLL;
+  /*using LibCLLu for LibCLLu.CLL;*/
 
   // The circular linked list storage structure
-  LibCLLu.CLL public list;
+  /*LibCLLu.CLL public list;*/
 
 
   // Content in this stream
@@ -95,8 +92,8 @@ contract EtherStream {
 
     c.created = block.timestamp; // Current block timestamp UTC
 
-    /*content.push(c);
-    content_count++;*/
+    content.push(c);
+    content_count++;
 
     ContentAdded(content_count, c.title, c.uri, c.preview_uri);
     return content_count;

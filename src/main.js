@@ -28,6 +28,8 @@ new Vue({
 
   created: function () {
     // Establish Ethereum connection on create
-    ContentStore.getWeb3()
+    // console.log(ContentStore);
+    // debugger
+    ContentStore.establishWeb3()
   }
 })

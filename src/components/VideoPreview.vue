@@ -1,7 +1,7 @@
 <template>
-
   <div class="content-card">
     <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
+      <Webtorrent :magnet="video.magnet" :client="client"></Webtorrent
       <img class="card-img-top" src="./../assets/content_placeholder.png" alt="Card image cap">
     </router-link>
     <div class="">
@@ -12,27 +12,25 @@
       <p class="card-text creator text-muted">
         {{ video.creator }}
       </p>
-
     </div>
   </div>
-
 </template>
 
 <script>
 
+import Webtorrent from './Webtorrent.vue'
+
+
 export default {
   name: "VideoPreview",
-  props: ['video'],
+  props: ['video', 'client'],
+  components: {
+    'Webtorrent': Webtorrent
+  },
   data() {
-    return {
-      checked: false,
-      title: 'Check me'
-    }
+    return {}
   },
   methods: {
-    check() {
-      this.checked = !this.checked;
-    }
   }
 }
 
