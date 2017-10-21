@@ -1,8 +1,8 @@
 <template>
   <div class="content-card">
     <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
-      <Webtorrent :magnet="video.magnet" :client="client"></Webtorrent
-      <img class="card-img-top" src="./../assets/content_placeholder.png" alt="Card image cap">
+      <!-- <img class="" src="./../assets/content_placeholder.png" alt="Card image cap"> -->
+      <Webtorrent :magnet="video.preview_uri" :client="client" class="card-img-top"></Webtorrent>
     </router-link>
     <div class="">
       <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
@@ -20,7 +20,6 @@
 
 import Webtorrent from './Webtorrent.vue'
 
-
 export default {
   name: "VideoPreview",
   props: ['video', 'client'],
@@ -37,6 +36,19 @@ export default {
 </script>
 
 <style scoped>
+.content
+{
+  min-height: 10em;
+  max-height: 10em;
+  background-color: black;
+}
+
+.card-title
+{
+  color: black;
+  font-size: 1.4em;
+
+}
 .creator
 {
   width: 10rem;
@@ -53,7 +65,7 @@ export default {
   margin-bottom: 1.5em;
   font-size: 0.8em;
 
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;

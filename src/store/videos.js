@@ -54,7 +54,7 @@ export default {
             this.addContent(
               {
                 title: result[0],
-                preview_magnet: result[1],
+                preview_uri: result[1],
                 magnet: result[2],
                 love: Number(result[3]),
                 creator: result[4]
