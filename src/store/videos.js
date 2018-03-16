@@ -37,10 +37,14 @@ export default {
         // debugger
         console.log(Object.getOwnPropertyNames(instance))
         return window.stream_instance = instance
-      }).then((result) => {
-        // Get the value from the contract to prove it worked.
-        return window.stream_instance.content_count.call(accounts[0])
-      }).then((result) => {
+      })
+      // .then((result) => {
+      //   // Get the value from the contract to prove it worked.
+      //   console.log("aobut to get content count")
+          
+      //   return window.stream_instance.content_count.call(accounts[0])
+      // })
+      .then((result) => {
         console.log(result)
 
         return this.state.count = [ result.c[0] ]
@@ -51,6 +55,8 @@ export default {
           console.log("loading content")
           window.stream_instance.content(i).then((result) => {
             console.log(result)
+            console.log("about to add content")
+            
             this.addContent(
               {
                 title: result[0],
