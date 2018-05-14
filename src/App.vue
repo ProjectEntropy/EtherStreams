@@ -1,11 +1,8 @@
 <template>
   <div>
-
     <main-nav></main-nav>
-
     <div class="container-fluid">
       <div class="row">
-
         <router-view></router-view>
         <footer></footer>
       </div>
@@ -14,7 +11,6 @@
 </template>
 
 <script>
-
 
 import Nav from './components/Nav.vue'
 

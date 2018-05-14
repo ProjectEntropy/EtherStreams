@@ -1,34 +1,36 @@
 pragma solidity ^0.4.10;
 
 // Used to build new streams
-contract StreamFactory{
-  EtherStream[] public streams;
+// contract StreamFactory{
+//   EtherStream[] public streams;
 
-  // Constructor
-  function StreamFactory(){
-  }
+//   // Constructor
+//   function StreamFactory()
+//   public
+//   {
+//   }
 
-  // Create a new stream
-  function newStream(string _title, bool _public)
-  public
-  returns(EtherStream newStream)
-  {
-    EtherStream s = new EtherStream(msg.sender, _title, _public);
-    return s;
-  }
-}
+//   // Create a new stream
+//   function newStream(string _title, bool _public)
+//   public
+//   returns(EtherStream newStream)
+//   {
+//     EtherStream s = new EtherStream(msg.sender, _title, _public);
+//     return s;
+//   }
+// }
 
 
 // A stream of content and other streams
 contract EtherStream {
 
   // About this stream
-  uint public created;
-  address public owner;
-  string public title;
-  bool public public_stream;
+  uint      public created;
+  address   public owner;
+  string    public title;
+  bool      public public_stream;
 
-  StreamFactory public stream_factory;
+//   StreamFactory public stream_factory;
 
   // Content in this stream
   Content[] public content;
@@ -57,6 +59,7 @@ contract EtherStream {
   }
 
   function EtherStream (address _owner, string _title, bool _public_stream)
+  public
   {
     created = block.timestamp;
     owner = _owner;
@@ -65,28 +68,19 @@ contract EtherStream {
 
 
     // Example content
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-    newContent("Sailing to Barrier", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-    newContent("How to watch Ethereum Contracts", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    // newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    // newContent("Sailing to Barrier", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    // newContent("How to watch Ethereum Contracts", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
 
-
-    newStream();
-    /*newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");
-    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7f22ddf7f9dfccd028de9f5ebdb72153a2c80be6");*/
+    // string _title, address _addr, string _preview_uri
+    // newStream("Cats", _owner, "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
 
   }
 
   // Add new content
-  function newContent(string _title, string _uri, string _preview_uri) returns (uint content_count) {
+  function newContent(string _title, string _uri, string _preview_uri)
+  public
+  returns (uint ret_content_count) {
     Content memory c;
 
     c.title = _title;
@@ -99,14 +93,16 @@ contract EtherStream {
     c.created = block.timestamp; // Current block timestamp UTC
 
     content.push(c);
-    content_count++;
+    content_count = content.length;
     ContentAdded(content_count, c.title, c.uri, c.preview_uri);
 
     return content_count;
   }
 
   // Add a new substream
-  function newStream(string _title, address _addr, string _preview_uri) returns (uint streams_count) {
+  function newStream(string _title, address _addr, string _preview_uri)
+  public
+  returns (uint ret_streams_count) {
     Stream memory s;
 
     s.title = _title;
@@ -118,15 +114,17 @@ contract EtherStream {
 
     s.created = block.timestamp; // Current block timestamp UTC
 
-    streams.push(c);
-    streams_count++;
+    streams.push(s);
+    stream_count = streams.length;
 
-    return streams_count;
+    return stream_count;
   }
 
 
   // Give some thanks to the creator of this content
-  function giveLove(uint content_id) payable
+  function giveLove(uint content_id)
+  public
+  payable
   {
     // Add love to content
     content[content_id].love += msg.value;

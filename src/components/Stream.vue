@@ -46,6 +46,7 @@ export default {
   },
   mounted: function()
   {
+    
     // When user drops files on the browser, create a new torrent and start seeding it!
     dragDrop('.drop-here', this.newContent)
   },
