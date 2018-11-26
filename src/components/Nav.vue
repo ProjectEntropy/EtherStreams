@@ -1,68 +1,55 @@
 <template>
-  <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-          <div class="navbar-header">
+  <b-navbar toggleable="md" type="light" variant="">
+
+  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+  <b-navbar-brand :to="{ name: 'Stream'}"><span class="glyphicon glyphicon-play"></span><span>►</span> ΞtherStreams</b-navbar-brand>
+
+  <b-collapse is-nav id="nav_collapse">
+
+    <b-navbar-nav>
+      <b-nav-item href="#">Link</b-nav-item>
+      <b-nav-item href="#" disabled>Disabled</b-nav-item>
+    </b-navbar-nav>
+
+    <!-- Right aligned nav items -->
+    <b-navbar-nav class="ml-auto">
+
+      <b-nav-form>
+        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
+        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+      </b-nav-form>
+
+      <b-nav-item-dropdown text="Lang" right>
+        <b-dropdown-item href="#">EN</b-dropdown-item>
+        <b-dropdown-item href="#">ES</b-dropdown-item>
+        <b-dropdown-item href="#">RU</b-dropdown-item>
+        <b-dropdown-item href="#">FA</b-dropdown-item>
+      </b-nav-item-dropdown>
+
+      <b-nav-item-dropdown right>
+        <!-- Using button-content slot -->
+        <template slot="button-content">
+          <em>User</em>
+        </template>
+        <b-dropdown-item href="#">Profile</b-dropdown-item>
+        <b-dropdown-item href="#">Signout</b-dropdown-item>
+      </b-nav-item-dropdown>
+    </b-navbar-nav>
+
+  </b-collapse>
+</b-navbar>
 
 
-              <!-- Branding Image -->
-              <router-link class="navbar-brand" :to="{ name: 'Stream'}">
-                  <span class="glyphicon glyphicon-play"></span><span>►</span> ΞtherStreams
-              </router-link>
-          </div>
 
-          <div class="collapse navbar-collapse" id="app-navbar-collapse">
-              <form class="navbar-form navbar-left">
-                  <div class="form-group">
-                      <input name="q" type="search" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default btn-search">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </button>
-              </form>
-
-              <!-- Right Side Of Navbar -->
-              <ul class="nav navbar-nav navbar-right">
-
-                      <li>
-                          <router-link :to="{name: 'UploadPage'}">
-                              <span class="glyphicon glyphicon-open"></span>
-                          </router-link>
-                      </li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                              <span class="glyphicon glyphicon-bell"></span>
-                          </a>
-                          <ul class="dropdown-menu" role="menu">
-                              <li class="dropdown-header">No Notification</li>
-                          </ul>
-                      </li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                              <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
-                          </a>
-
-                          <ul class="dropdown-menu" role="menu">
-                              <li class="dropdown-header"> name</li>
-                              <li>
-                                 My Account
-                              </li>
-                              <li class="nav-divider"></li>
-                              <li>
-                                  Logout
-                              </li>
-                          </ul>
-                      </li>
-              </ul>
-          </div>
-      </div>
-  </nav>
+       
 </template>
 
 <script>
 
 export default {
 
-  name: 'nav',
+  name: 'nav-component',
 
   data () {
     return {

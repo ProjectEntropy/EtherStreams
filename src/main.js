@@ -3,12 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import BootstrapVue from 'bootstrap-vue'
-
-import MoonLoader from './components/Loader'
-//
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
+import MoonLoader from './components/Loader'
+
+import VueMagnet from 'vue-magnet' 
+Vue.use(VueMagnet)
+
 
 Vue.config.productionTip = false
 
@@ -16,7 +21,7 @@ Vue.config.productionTip = false
 // ContentStore
 import ContentStore from './store/videos'
 
-// Vue.use(BootstrapVue);
+import { Drizzle, generateStore } from 'drizzle'
 
 
 /* eslint-disable no-new */

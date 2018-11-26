@@ -18,8 +18,11 @@ Clicking on some content fires up WebTorrent and injects whatever seems to be th
 # install dependencies
 npm install
 
-# Start local ethereum node (or testrpc)
-testrpc
+# Clear out old network stuff
+truffle networks --clean
+
+# Start local ethereum node (or ganache)
+ganache-cli
 
 # Deploy contracts
 truffle compile
@@ -41,3 +44,8 @@ npm run unit
 # run all tests
 npm test
 ```
+
+## TODO
+
+Add videos
+show videos

@@ -5,33 +5,14 @@
         <router-link :to="{ name: 'stream', params: { address: 'testaddress234897238946239' }}" class="nav-link active">
           Home <span class="sr-only">(current)</span>
         </router-link>
-
-      </li>
-      <li class="nav-item">
-        <router-link :to="{ name: 'stream', params: { address: 'testaddress234897238946239' }}" class="nav-link">
-          Cats
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Technology</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Ethereum</a>
       </li>
     </ul>
 
     <ul class="nav nav-pills flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Music</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Documentaries</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Political</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">FREEDOM</a>
+      <li class="nav-item"  v-for="s in ContentStore.state.streams">
+        <router-link :to="{ name: 'stream', params: { address: s.address }}" class="nav-link">
+          {{ s.name }}
+        </router-link>
       </li>
     </ul>
 
@@ -39,6 +20,8 @@
 </template>
 
 <script>
+import ContentStore from './../store/videos'
+
 
 export default {
 
@@ -46,7 +29,7 @@ export default {
 
   data () {
     return {
-      // StreamStore
+      ContentStore
     }
   }
 }

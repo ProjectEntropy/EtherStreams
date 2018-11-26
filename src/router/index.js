@@ -20,6 +20,12 @@ export default new Router({
       props: true
     },
     {
+      path: '/profile/:address',
+      name: 'profile',
+      component: EthVideo,
+      props: true
+    },
+    {
       path: '/stream/:address',
       name: 'stream',
       component: Stream,

@@ -58,7 +58,7 @@ contract EtherStream {
     uint created;
   }
 
-  function EtherStream (address _owner, string _title, bool _public_stream)
+  constructor (address _owner, string _title, bool _public_stream)
   public
   {
     created = block.timestamp;
@@ -68,13 +68,14 @@ contract EtherStream {
 
 
     // Example content
-    // newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
     // newContent("Sailing to Barrier", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
     // newContent("How to watch Ethereum Contracts", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
 
     // string _title, address _addr, string _preview_uri
-    // newStream("Cats", _owner, "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-
+    newStream("Cats", _owner, "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    newStream("Technology", _owner, "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
+    newStream("News", _owner, "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
   }
 
   // Add new content
@@ -94,7 +95,7 @@ contract EtherStream {
 
     content.push(c);
     content_count = content.length;
-    ContentAdded(content_count, c.title, c.uri, c.preview_uri);
+    emit ContentAdded(content_count, c.title, c.uri, c.preview_uri);
 
     return content_count;
   }

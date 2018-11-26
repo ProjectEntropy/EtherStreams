@@ -8,7 +8,6 @@
 
     </hr>
 
-
     <span class="">
       <h2>
         💕
@@ -38,7 +37,6 @@ export default {
     var client = new WebTorrent()
 
     console.log("torrent id")
-
     console.log(unescape(this.magnet))
 
     // Hack on extra trackers incase there are none

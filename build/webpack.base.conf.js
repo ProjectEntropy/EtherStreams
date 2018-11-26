@@ -30,6 +30,7 @@ module.exports = {
   },
   module: {
     rules: [
+      
       { test: /vue-icons/, loader: "callback-loader"},
       {
         test: /\.vue$/,
