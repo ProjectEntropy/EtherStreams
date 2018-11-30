@@ -21,8 +21,6 @@ Vue.config.productionTip = false
 // ContentStore
 import ContentStore from './store/videos'
 
-import { Drizzle, generateStore } from 'drizzle'
-
 
 /* eslint-disable no-new */
 new Vue({
