@@ -14,12 +14,11 @@
 import Streams from './Streams.vue'
 import VideoPreview from './VideoPreview.vue'
 import ContentStore from './../store/videos'
+import WebTorrentStore from './../store/webtorrent'
+var client = WebTorrentStore.state.webTorrent
 
 
 var dragDrop = require('drag-drop')
-var WebTorrent = require('webtorrent')
-
-var client = new WebTorrent()
 
 
 export default {

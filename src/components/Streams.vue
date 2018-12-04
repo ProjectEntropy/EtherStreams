@@ -16,13 +16,20 @@
           </router-link>
         </li>
       </ul>
+
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"  v-for="t in getTorrentsState()">
+          {{ t.name }}
+          <b-progress :value="t.progress" :max="1" show-progress></b-progress>
+        </li>
+      </ul>
     </nav>
 
     <div class="main-content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-9">
-            <VideoPreview v-for="c in ContentStore.state.content" :video="c" :key="c.magnet">
+            <VideoPreview v-for="c in ContentStore.state.content" :video="c" :key="c.id">
             </VideoPreview>
 
             <button v-on:click="addContent">Add</button>
@@ -36,8 +43,7 @@
 <script>
 import ContentStore from './../store/videos'
 import VideoPreview from './VideoPreview'
-
-var client = this.WebTorrent
+import WebTorrentStore from './../store/webtorrent'
 
 export default {
 
@@ -50,14 +56,23 @@ export default {
   methods: {
     addContent: function() {
       console.log("addContent")
-      ContentStore.createContent("Test", "magnet:?xt=urn:btih:7c21592cc47997d119a49e20904a81e81f14c7e7")
+      ContentStore.createContent("Michal Men", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
+    },
+    getTorrentsState: function() {
+      return WebTorrentStore.state.torrents.map(x => ({ 
+          name: x.name,
+          ready: x.ready,
+          numPeers: x.numPeers,
+          ratio: x.ratio,
+          progress: x.progress 
+        }))
     }
   },
 
   data () {
     return {
       ContentStore,
-      client
+      WebTorrentStore
     }
   }
 }

@@ -67,6 +67,7 @@ export default {
         name: c[0],
         preview_uri: c[1],
         magnet: c[2],
+        id: i
       }
      
       app.state.content.push(c_obj)
