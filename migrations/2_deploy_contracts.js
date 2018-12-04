@@ -1,5 +1,7 @@
-var EtherStream = artifacts.require("./EtherStream.sol");
+var EtherStreams = artifacts.require("./EtherStreams.sol");
+var _Stream = artifacts.require("./Stream.sol");
+
 
 module.exports = function(deployer) {
-  deployer.deploy(EtherStream, "0x00000", "EtherStreams", true);
+  deployer.deploy(EtherStreams);
 };

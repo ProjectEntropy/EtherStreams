@@ -1,12 +1,11 @@
 <template>
   <div class="content-card">
     <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
-      <!-- <img class="" src="./../assets/content_placeholder.png" alt="Card image cap"> -->
-      <Webtorrent :magnet="video.preview_uri" :client="client" class="card-img-top"></Webtorrent>
+      <WebtorrentElm :magnet="video.preview_uri"></WebtorrentElm>
     </router-link>
     <div class="">
       <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
-        <p class="card-title lead">{{ video.title }}</p>
+        <p class="card-title lead">{{ video.name }}</p>
       </router-link>
 
       <p class="card-text creator text-muted">
@@ -18,13 +17,13 @@
 
 <script>
 
-import Webtorrent from './Webtorrent.vue'
+import WebtorrentElm from './Webtorrent.vue'
 
 export default {
   name: "VideoPreview",
   props: ['video', 'client'],
   components: {
-    'Webtorrent': Webtorrent
+    'WebtorrentElm': WebtorrentElm
   },
   data() {
     return {}
@@ -36,6 +35,14 @@ export default {
 </script>
 
 <style scoped>
+
+.card-img-top
+{
+  background: black;
+  width: 100%;
+  height: 100%;
+}
+
 .content
 {
   min-height: 10em;

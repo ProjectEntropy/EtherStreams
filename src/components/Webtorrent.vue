@@ -1,16 +1,14 @@
 <!-- This component renders whatever magnet link is provided into the DOM -->
 <template>
-  <div class='content'>
+  <div id='containerElement'>
   </div>
 </template>
 
 <script>
-import MoonLoader from './Loader'
 
 export default {
-  name: "webtorrent",
-  props: ['magnet', 'client'],
-  components: { 'MoonLoader': MoonLoader },
+  name: "webtorrentElm",
+  props: ['magnet'],
   data () {
     return {
       loading: true,
@@ -20,25 +18,23 @@ export default {
   },
 
   mounted: function() {
-    var client = this.client
 
-    // Hack on extra trackers incase there are none
-    // var magnetURI = "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6&dn=Screen+Shot+2017-10-13+at+7.25.09+PM.png&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com"
-
+    // Hack on extra trackers
     var magnetURI = unescape(this.magnet + '&tr=wss://tracker.openwebtorrent.com&tr=wss://tracker.btorrent.xyz')
 
-    console.log("get magnet url")
+    console.log("get magnet url: " + magnetURI)
 
-    if(client.get(magnetURI))
+    var torrent = this.$WebTorrent.get(magnetURI)
+
+    if(torrent)
     {
       // we already have the torrent loaded
-      // new torrent
-      client.get(magnetURI, this.loadCompletedTorrent)
+      this.loadCompletedTorrent(torrent)
     }
     else
     {
       // new torrent
-      client.add(magnetURI, this.loadCompletedTorrent)
+      this.$WebTorrent.add(magnetURI, this.loadCompletedTorrent)
     }
 
   },
@@ -47,6 +43,8 @@ export default {
     loadCompletedTorrent: function (torrent) {
         // Got torrent metadata
         var content_file
+
+        console.log("loadCompletedTorrent")
 
         if(torrent.files.length == 1)
         {
@@ -72,15 +70,15 @@ export default {
            })
         }
 
+        console.log("got content:", content_file)
+
         if(content_file)
         {
-          content_file.appendTo('.content', function (err, elem) {
+          content_file.appendTo('#containerElement', function (err, elem) {
             if (err) throw err // file failed to download or display in the DOM
+            console.log('New DOM node with content', elem)
 
-            // elem.parentElement.querySelector('.v-spinner').remove()
-            elem.parentElement.parentElement.querySelector(".card-img-top").remove()
-
-            elem.setAttribute("class", "embed-responsive")
+            elem.setAttribute("class", "img-fluid")
           })
         }
         else

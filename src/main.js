@@ -13,7 +13,7 @@ import MoonLoader from './components/Loader'
 
 import VueMagnet from 'vue-magnet' 
 Vue.use(VueMagnet)
-
+Vue.prototype.$WebTorrent = Vue.WebTorrent
 
 Vue.config.productionTip = false
 
