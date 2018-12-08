@@ -49,9 +49,14 @@ export default {
     for(i = 0; i < app.state.stream_count; i++)
     {
       var s = await dApp.streams(i)
+      
+      let s_obj = streeeem.at(dAppAddr)
+
+      console.log("stream", s_obj)
       var s_obj = {
-        name: s[0],
-        address: s[1]
+        owner: await s_obj.owner(),
+        name: await s_obj.title(),
+        address: s
       }
      
       app.state.streams.push(s_obj)
@@ -76,11 +81,15 @@ export default {
 
   
 
-  addContent (content) {
+  addContent(content) {
     this.state.content.push(content)
   },
 
-  createContent (title, magnet) {
+  addStream(title, magnet) {
+    window.stream_instance.newStream(title, magnet, { from: window.web3.eth.accounts[0], gas:3000000 })
+  },
+
+  createContent(title, magnet) {
     window.stream_instance.newContent(title, magnet, magnet, { from: window.web3.eth.accounts[0], gas:3000000 })
   }
 }

@@ -15,6 +15,8 @@
             {{ s.name }}
           </router-link>
         </li>
+
+        <button v-on:click="newStream">New Stream</button>
       </ul>
 
       <ul class="nav nav-pills flex-column">
@@ -57,6 +59,10 @@ export default {
     addContent: function() {
       console.log("addContent")
       ContentStore.createContent("Michal Men", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
+    },
+    newStream: function() {
+      console.log("newStream")
+      ContentStore.addStream("technology", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
     },
     getTorrentsState: function() {
       return WebTorrentStore.state.torrents.map(x => ({ 

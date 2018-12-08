@@ -21,15 +21,6 @@ contract Stream {
   Stream[] public streams;
   uint public stream_count;
 
-  // struct Stream {
-  //   string title;
-  //   string preview_uri;
-  //   address addr;
-  //   uint love;
-  //   address creator;
-  //   uint created;
-  // }
-
   struct Content {
     string title;
     string preview_uri;
@@ -47,13 +38,6 @@ contract Stream {
     title = _title;
     public_stream = _public_stream;
     stream_factory = EtherStreams(_streamFactoryAddress);
-
-    // Example content
-    // newContent("Sintel", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:7c21592cc47997d119a49e20904a81e81f14c7e7");
-    // newContent("Sailing to Barrier", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-    // newContent("How to watch Ethereum Contracts", "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10", "magnet:?xt=urn:btih:8784ff95f26ea6b7e5347bb07c4ced42d133bcf6");
-
-    // string _title, address _addr, string _preview_uri
   }
 
   // Add new content

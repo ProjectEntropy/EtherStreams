@@ -1,7 +1,7 @@
 <template>
   <div class="content-card col-sm-2">
     <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
-      <WebtorrentElm :magnet="video.preview_uri"></WebtorrentElm>
+      <!-- <WebtorrentElm :magnet="video.preview_uri"></WebtorrentElm> -->
     </router-link>
     <div class="">
       <router-link :to="{ name: 'watch', params: { magnet: video.magnet }}">
