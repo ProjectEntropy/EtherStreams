@@ -8,6 +8,9 @@ Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import Web3 from 'web3'
+
+const provider = require('eth-provider')
 
 import MoonLoader from './components/Loader'
 
@@ -17,6 +20,9 @@ Vue.prototype.$WebTorrent = Vue.WebTorrent
 
 Vue.config.productionTip = false
 
+// Globally available web3 instance
+Vue.prototype.$web3 = new Web3(provider(['injected', 'direct']))
+window.$Vue = Vue;
 
 // ContentStore
 import ContentStore from './store/videos'
@@ -33,6 +39,7 @@ new Vue({
     // Establish Ethereum connection on create
     // console.log(ContentStore);
     // debugger
+
     ContentStore.establishWeb3()
   }
 })

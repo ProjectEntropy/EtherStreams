@@ -1,5 +1,10 @@
 <template>
-  <div> 
+  <div>
+
+    <b-modal v-model="showAddContentBox">
+      
+    </b-modal> 
+    
     <nav class="left-mdsidenav col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
@@ -12,7 +17,7 @@
       <ul class="nav nav-pills flex-column">
         <li class="nav-item"  v-for="s in ContentStore.state.streams">
           <router-link :to="{ name: 'stream', params: { address: s.address }}" class="nav-link">
-            {{ s.name }}
+            {{ s.title }}
           </router-link>
         </li>
 
@@ -28,13 +33,16 @@
     </nav>
 
     <div class="main-content">
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-9">
             <VideoPreview v-for="c in ContentStore.state.content" :video="c" :key="c.id">
             </VideoPreview>
 
-            <button v-on:click="addContent">Add</button>
+            <b-button @click="showAddContentBox = !showAddContentBox">
+              Add new content
+            </b-button>
           </div>
         </div>
       </div>
@@ -47,6 +55,9 @@ import ContentStore from './../store/videos'
 import VideoPreview from './VideoPreview'
 import WebTorrentStore from './../store/webtorrent'
 
+import dragDrop from 'drag-drop'
+
+
 export default {
 
   name: 'streams',
@@ -56,13 +67,17 @@ export default {
   },
 
   methods: {
+    showAddContent: function() {
+      console.log("ShowAddContent")
+      // ContentStore.createContent("Michal Men", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
+    },
     addContent: function() {
       console.log("addContent")
-      ContentStore.createContent("Michal Men", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
+      // ContentStore.createContent("Michal Men", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
     },
     newStream: function() {
       console.log("newStream")
-      ContentStore.addStream("technology", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
+      ContentStore.addStream("funny", "magnet:?xt=urn:btih:a387e100a31e92129fa8b79855cc9ef199d5470b")
     },
     getTorrentsState: function() {
       return WebTorrentStore.state.torrents.map(x => ({ 
@@ -78,7 +93,8 @@ export default {
   data () {
     return {
       ContentStore,
-      WebTorrentStore
+      WebTorrentStore,
+      showAddContentBox: false
     }
   }
 }

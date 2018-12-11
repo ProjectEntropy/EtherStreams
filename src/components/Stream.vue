@@ -17,7 +17,6 @@ import ContentStore from './../store/videos'
 import WebTorrentStore from './../store/webtorrent'
 var client = WebTorrentStore.state.webTorrent
 
-
 var dragDrop = require('drag-drop')
 
 

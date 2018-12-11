@@ -9,14 +9,11 @@ export default {
     stream_count: 0,
     streams: [ ],
     count: 0,
-    content: [ ]
+    content: [ ],
+    web3: null
   },
   establishWeb3(){
-    getWeb3
-    .then(results => {
-      window.web3 = results.web3
-      this.instantiateContract(this)
-    })
+    this.instantiateContract(this)
   },
 
 
@@ -25,10 +22,13 @@ export default {
     const etherStreams = contract(EtherStreams)
     const streeeem = contract(EthStream)
 
-    etherStreams.setProvider(window.web3.currentProvider)
-    streeeem.setProvider(window.web3.currentProvider)
+    this.state.web3 = window.$Vue.prototype.$web3
+    var web3 = this.state.web3
 
-    let accounts  = await window.web3.eth.getAccounts
+    etherStreams.setProvider(web3.currentProvider)
+    streeeem.setProvider(web3.currentProvider)
+
+    let accounts  = await web3.eth.getAccounts
     let EtherStreamsDapp      = await etherStreams.deployed()
 
     // Get the root stream
@@ -49,13 +49,13 @@ export default {
     for(i = 0; i < app.state.stream_count; i++)
     {
       var s = await dApp.streams(i)
-      
-      let s_obj = streeeem.at(dAppAddr)
+      let s_addr = await EtherStreamsDapp.streams(i) 
+      let s_obj = streeeem.at(s_addr)
 
       console.log("stream", s_obj)
       var s_obj = {
         owner: await s_obj.owner(),
-        name: await s_obj.title(),
+        title: await s_obj.title(),
         address: s
       }
      
@@ -86,10 +86,17 @@ export default {
   },
 
   addStream(title, magnet) {
-    window.stream_instance.newStream(title, magnet, { from: window.web3.eth.accounts[0], gas:3000000 })
+    this.state.web3.eth.getAccounts().then( accounts => {
+        window.stream_instance.newStream(title, magnet, { from: accounts[0], gas:3000000 })
+      }
+    )
   },
 
   createContent(title, magnet) {
-    window.stream_instance.newContent(title, magnet, magnet, { from: window.web3.eth.accounts[0], gas:3000000 })
+    this.state.web3.eth.getAccounts().then( accounts => {
+        window.stream_instance.newContent(title, magnet, magnet, { from: accounts[0], gas:3000000 })
+      }
+    )
+    
   }
 }
