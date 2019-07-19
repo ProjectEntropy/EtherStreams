@@ -19,6 +19,7 @@ export default {
 
   async instantiateContract(app) {
     const contract = require('truffle-contract')
+<<<<<<< Updated upstream
     const etherStreams = contract(EtherStreams)
     const streeeem = contract(EthStream)
 
@@ -77,6 +78,50 @@ export default {
      
       app.state.content.push(c_obj)
     }
+=======
+    const etherStreams = contract(EtherStreamContract)
+
+    etherStreams.setProvider(window.web3.currentProvider)
+
+    // Get accounts.
+    window.web3.eth.getAccounts((error, accounts) => {
+      etherStreams.deployed().then((instance) => {
+        // debugger
+        console.log(Object.getOwnPropertyNames(instance))
+        return window.stream_instance = instance
+      }).then((result) => {
+        // Get the value from the contract to prove it worked.
+        console.log("about to get content count")
+          
+        return window.stream_instance.content_count()
+      }).then((result) => {
+        console.log(result)
+
+        return this.state.count = [ result.integerValue() ]
+      }).then((result) => {
+
+        console.log("loaded: " + this.state.count)        
+
+        for(var i = 0; i < this.state.count; i++)
+        {
+          console.log("loading content")
+          window.stream_instance.content(i).then((result) => {
+            console.log(result)
+            console.log("about to add content")
+            
+            this.addContent(
+              {
+                title: result[0],
+                preview_uri: result[1],
+                magnet: result[2],
+                love: Number(result[3]),
+                creator: result[4]
+              })
+          })
+        }
+      })
+    })
+>>>>>>> Stashed changes
   },
 
   
@@ -84,6 +129,7 @@ export default {
   addContent(content) {
     this.state.content.push(content)
   },
+<<<<<<< Updated upstream
 
   addStream(title, magnet) {
     this.state.web3.eth.getAccounts().then( accounts => {
@@ -98,5 +144,9 @@ export default {
       }
     )
     
+=======
+  createContent (content) {
+    window.stream_instance.newContent(title, magnet,  { from: window.web3.eth.accounts[0] })
+>>>>>>> Stashed changes
   }
 }
